@@ -43,14 +43,14 @@ class Drunk():
         '''
         The if statements allows for the drunk to make either sober rational decisions or random alcohol driven decisions. If the random number is
         equal or less than 0.5, the potential distance the drunk moves in both directions are evaulated to drunks current distance to home. For instance,
-        if the drunk wants to move south/down, and the distance is higher than the current position, then the drunk moves north/up where the home is 
+        if the drunk wants to move down, and the distance is higher than the current position, then the drunk moves up where the home is 
         located. This is calculated for both x and y. However, if the random value was higher than 0.5 then, another random number is generated, so
         the drunk has an equal to chance to move in any random direction with a random alcohol_consumption
         '''        
         if random.random() <= 0.5:  
-            Moves_Down = self._y - Sober_Speed
-            new_y_distance = self.distance_to_home(self.House_Location, self._x, Moves_Down)
-            if new_y_distance <= Distancebetween:
+            new_y = self._y - 1
+            new_y_distance = self.distance_to_home(self.House_Location, self._x, new_y)
+            if new_y_distance < Distancebetween:
                 self._y = (self._y - Sober_Speed)
             else: 
                 self._y = (self._y + Sober_Speed)
@@ -61,9 +61,9 @@ class Drunk():
                 self._y = (self._y + alcohol_consumption)
         
         if random.random() <= 0.5:  
-            Moves_Right = self._x - 5
-            new_x_distance = self.distance_to_home(self.House_Location, Moves_Right, self._y)
-            if new_x_distance <= Distancebetween:
+            new_x = self._x - 1
+            new_x_distance = self.distance_to_home(self.House_Location, new_x, self._y)
+            if new_x_distance < Distancebetween:
                 self._x = (self._x - Sober_Speed)
             else: 
                 self._x = (self._x + Sober_Speed)
